@@ -1,0 +1,41 @@
+import SwiftUI
+
+struct RadiantBorderImageView: View {
+    var viewSize: CGFloat = 150
+    private var imageSize: CGFloat {
+        return viewSize/1.15
+    }
+    
+    var body: some View {
+        ZStack {
+            // Gradient Border
+            RoundedRectangle(cornerRadius: viewSize/4, style: .circular)
+                .strokeBorder(
+                    LinearGradient(
+                        gradient: Gradient(colors: [.blue, .purple, .pink]),
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 3
+                )
+                .frame(width: viewSize, height: viewSize)
+            
+            // Image with padding inside the border
+            Image(.alighani)
+                .resizable()
+                .scaledToFill()
+                .clipShape(RoundedCorner(radius: imageSize/4))
+                .frame(width: imageSize, height: imageSize)
+        }
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        RadiantBorderImageView()
+            .padding()
+    }
+}
+#Preview {
+    ContentView()
+}
