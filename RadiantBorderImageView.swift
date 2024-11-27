@@ -1,3 +1,10 @@
+//
+//  RadiantBorderImageView.swift
+//  The10Percent
+//
+//  Created by Hadi Ali on 28/11/2024.
+//
+
 import SwiftUI
 
 struct RadiantBorderImageView: View {
@@ -5,6 +12,7 @@ struct RadiantBorderImageView: View {
     private var imageSize: CGFloat {
         return viewSize/1.15
     }
+    var image: ImageResource
     
     var body: some View {
         ZStack {
@@ -21,10 +29,10 @@ struct RadiantBorderImageView: View {
                 .frame(width: viewSize, height: viewSize)
             
             // Image with padding inside the border
-            Image(.alighani)
+            Image(image)
                 .resizable()
                 .scaledToFill()
-                .clipShape(RoundedCorner(radius: imageSize/4))
+                .clipShape(RoundedRectangle(cornerRadius: imageSize/4))
                 .frame(width: imageSize, height: imageSize)
         }
     }
@@ -32,7 +40,7 @@ struct RadiantBorderImageView: View {
 
 struct ContentView: View {
     var body: some View {
-        RadiantBorderImageView()
+        RadiantBorderImageView(image: .dummy)
             .padding()
     }
 }
